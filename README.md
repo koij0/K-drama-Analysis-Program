@@ -30,7 +30,7 @@ FUNCTIONS:
     ~ genre information
   
 - Generate (generates a rec list)
-- 
+  
     ~ genre (can have multiple genres)
   
     ~ actor
