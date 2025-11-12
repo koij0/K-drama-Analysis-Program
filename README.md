@@ -1,6 +1,8 @@
 # K-drama-Analysis-Program
 Analyzes K-drama data for: information search, generation, and list creation
 
+UPDATED: 11/12/25
+
 BRIEF: Analyze K-drama data
 
 DATA MANIPULATION:
