@@ -61,3 +61,8 @@ FUNCTIONS:
     ~ which categories you want (ie. genre, synopsis, episode count...)
   
     ~ rate Shows (rating category + notes)
+
+
+  DATA SOURCES:
+  WordNet File: https://www.kaggle.com/datasets/dfydata/wordnet-dictionary-thesaurus-files-in-csv-format
+  K-Drama Data: https://www.kaggle.com/datasets/redhata/korean-drama-dataset-2010-2025-2600-titles
