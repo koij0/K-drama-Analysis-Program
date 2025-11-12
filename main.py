@@ -206,7 +206,7 @@ def genRand(list):
 if __name__ == "__main__": 
 
     # UPLOAD DATA
-    with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/kdrama_data.txt", "r") as kdrama_data:
+    with open("kdrama_data.txt", "r") as kdrama_data:
 
         # ORGANIZE
         title = []
@@ -293,7 +293,7 @@ if __name__ == "__main__":
 
     elif option == 2: 
         # LOAD IN THESAURUS
-        with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/WordnetSynonyms.csv", "r") as thesaurus:
+        with open("WordnetSynonyms.csv", "r") as thesaurus:
             # ORGANIZE
             word = []
             synonym_list = []
