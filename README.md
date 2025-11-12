@@ -6,11 +6,11 @@ BRIEF: Analyze K-drama data
 DATA MANIPULATION:
 - Change deliminator to ("=") {Third Party Site}
 - Remove /n in "Synopsis" {Through Excel}
-- 
+  
 
 QUESTIONS:
 - Does episode count contribute to popularity (ie. shorter shows more popular)?
-- 
+  
 
 EXECUTABLES:
 - User can ask to get the synopsis of a title
@@ -20,7 +20,9 @@ EXECUTABLES:
 
 FUNCTIONS:
 - Information (asks for input to retrieve information)
+  
     ~ title Information
+  
     [IDK if I need these anymore...]
     ~ actor information 
     ~ genre information 
