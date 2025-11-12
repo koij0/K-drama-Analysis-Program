@@ -24,21 +24,38 @@ FUNCTIONS:
     ~ title Information
   
     [IDK if I need these anymore...]
-    ~ actor information 
-    ~ genre information 
-- Generate (generates a rec list) 
+  
+    ~ actor information
+  
+    ~ genre information
+  
+- Generate (generates a rec list)
+- 
     ~ genre (can have multiple genres)
+  
     ~ actor
+  
     ~ episode length
+  
     ~ tags
-    ~ random rec
+  
+    ~ random recommendation
+  
     ~ keywords in synopsis
+  
     ~ streaming platform
+  
 - Store/list --> then generate information on list 
-- Create a Watch List 
+- Create a Watch List
+  
     ~ creates new file (maybe generate as a spreadsheet or table/doc...?) --> extension (can connect it to .xlsx using pandas)
+  
     ~ input each show you've watched
+  
     ~ create new category "WATCHED" (bool)
+  
     ~ you can add shows to watch list
+  
     ~ which categories you want (ie. genre, synopsis, episode count...)
+  
     ~ rate Shows (rating category + notes)
