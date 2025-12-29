@@ -211,7 +211,7 @@ def addCategory(list, category):
 # Add List Functions
 # get categories
 def getCat(list):
-    with open(f"/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/{list}.csv", "r") as check:
+    with open(f"{list}.csv", "r") as check:
         categories = ((check.readline()).strip()).split(",")
         del categories[-1]
     return categories
@@ -288,7 +288,7 @@ def episodeCount(scale, episodes):
 if __name__ == "__main__": 
 
     # UPLOAD DATA
-    with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/kdrama_data.txt", "r") as kdrama_data:
+    with open("kdrama_data.txt", "r") as kdrama_data:
 
         # ORGANIZE
         title = []
@@ -342,7 +342,7 @@ if __name__ == "__main__":
             popularity.append((line[16]).strip("#"))
 
     # UPLOAD SAVED LISTS
-    with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/savedLists.txt", "r") as saved:
+    with open("savedLists.txt", "r") as saved:
         saveList = []
         for line in saved:
             line = line.strip()
@@ -405,7 +405,7 @@ if __name__ == "__main__":
 
     elif option == 2: 
         # LOAD IN THESAURUS
-        with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/WordnetSynonyms.csv", "r") as thesaurus:
+        with open("WordnetSynonyms.csv", "r") as thesaurus:
             # ORGANIZE
             word = []
             synonym_list = []
@@ -495,7 +495,7 @@ if __name__ == "__main__":
                 numCat = int(input("How many Categories would you like in your list? "))
                 for i in range(numCat):
                     addCategory(newList, createCategory())
-            with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/savedLists.txt", "a") as save:
+            with open("savedLists.txt", "a") as save:
                 save.write(f"{create} \n")
 
         elif choice == 2: 
@@ -504,7 +504,7 @@ if __name__ == "__main__":
             if findList in saveList:
                 found = True
             if found == True:
-                with open(f"/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/{findList}.csv", "a") as add:
+                with open(f"{findList}.csv", "a") as add:
                     entries = int(input("How many entries to Add? "))
                     for i in range(entries):
                         addEntry(getCat(findList), add)
