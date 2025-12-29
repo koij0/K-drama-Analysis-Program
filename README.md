@@ -1,9 +1,10 @@
 # K-drama-Analysis-Program
 Analyzes K-drama data for: information search, generation, and list creation
 
-UPDATED: 11/12/25
+UPDATED: 12/28/25
 
 BRIEF: Analyze K-drama data
+
 
 DATA MANIPULATION:
 - Change deliminator to ("=") {Third Party Site}
@@ -12,7 +13,10 @@ DATA MANIPULATION:
 
 QUESTIONS:
 - Does episode count contribute to popularity (ie. shorter shows more popular)?
-  
+    ~ Average episode count for each incrementage of rating (9+, 8.9-8, etc)
+- What is the average rating for Kdramas adapted from Webtoons?
+- Most popular streaming services
+
 
 EXECUTABLES:
 - User can ask to get the synopsis of a title
@@ -22,45 +26,33 @@ EXECUTABLES:
 
 FUNCTIONS:
 - Information (asks for input to retrieve information)
-  
     ~ title Information
-  
     [IDK if I need these anymore...]
-  
-    ~ actor information
-  
-    ~ genre information
-  
-- Generate (generates a rec list)
-  
+    ~ actor information 
+    ~ genre information 
+- Generate (generates a rec list) 
     ~ genre (can have multiple genres)
-  
     ~ actor
-  
     ~ episode length
-  
     ~ tags
-  
-    ~ random recommendation
-  
+    ~ random rec
     ~ keywords in synopsis
-  
     ~ streaming platform
-  
 - Store/list --> then generate information on list 
-- Create a Watch List
-  
-    ~ creates new file (maybe generate as a spreadsheet or table/doc...?) --> extension (can connect it to .xlsx using pandas)
-  
+- Create a Watch List 
+    ~ creates new file (.csv)
     ~ input each show you've watched
-  
-    ~ create new category "WATCHED" (bool)
-  
-    ~ you can add shows to watch list
-  
-    ~ which categories you want (ie. genre, synopsis, episode count...)
-  
-    ~ rate Shows (rating category + notes)
+    ~ create new categories 
+    ~ you can add entries to watch list
+    ~ saves lists
+
+
+
+ANALYSIS:
+- Episode count per rating incrementage 
+    * Check for Outliers!!!
+- Average rating for "Webtoon Adapted"
+- Most popular streaming services (top 3)
 
 
   DATA SOURCES:
