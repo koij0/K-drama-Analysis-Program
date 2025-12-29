@@ -1,7 +1,7 @@
 # Koi Johnson
 # BRIEF: Analyze K-drama data
 # START: 10/22/25 
-# UPDATED: 11/12/25
+# UPDATED: 12/28/25
 
 # IMPORTS
 import random
@@ -198,7 +198,89 @@ def genRand(list):
         return rand_list
     
 
+# Create List Functions
+# create category
+def createCategory():
+    category = input("Name of Category: ")
+    return category
 
+# add category to list
+def addCategory(list, category):
+    list.write(f"{category},")
+    
+# Add List Functions
+# get categories
+def getCat(list):
+    with open(f"/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/{list}.csv", "r") as check:
+        categories = ((check.readline()).strip()).split(",")
+        del categories[-1]
+    return categories
+        
+# add 
+def addEntry(categories, list):
+    list.write("\n")
+    for i in range(len(categories)):
+        entry = input(f"{categories[i]}: ")
+        list.write(f"{entry},")
+    
+
+# ANALYSIS
+
+# incrementage (scale)
+def ratingScale(score):
+    scale = [] # index zero = na, lowest to highest rating
+    na = []
+    nine = []
+    eight = []
+    seven = []
+    six = []
+    five = []
+    four = []
+    for i in range(len(score)):
+        if score[i] == 'N/A':
+            na.append(i)
+        else: 
+            rating = float(score[i])    
+            if rating >= 9.0:
+                nine.append(i)
+            elif rating >= 8.0 and rating < 9.0:
+                eight.append(i)
+            elif rating >= 7.0 and rating < 8.0:
+                seven.append(i)
+            elif rating >= 6.0 and rating < 7.0:
+                six.append(i)
+            elif rating >= 5.0 and rating < 6.0:
+                five.append(i)
+            elif rating >= 4.0 and rating < 5.0:
+                four.append(i)
+    scale.append(na)
+    scale.append(four)
+    scale.append(five)
+    scale.append(six)
+    scale.append(seven)
+    scale.append(eight)
+    scale.append(nine)
+    return scale
+
+# average episode count per scale
+def episodeCount(scale, episodes):
+    avgEpisode = []
+    for i in range(len(scale)):
+        average = 0
+        for j in range(len(scale[i])):
+            average += episodes[scale[i][j]]
+        average = average/(len(scale[i]))
+        avgEpisode.append(average)
+    return avgEpisode
+
+# outliers check
+    ### FIND STD, use AVG, check all shows per scale group if they are outside the AVG by 3ish STD
+
+# average rating for "webtoon-adapted" shows
+    ### CREATE LIST WITH ALL "WEBTOON-ADAPTED" SHOWS AND THEIR CORRESPONDING RATINGS, AVERAGE  
+
+# most popular streaming services
+    ### COUNT STREAMING SERVICES
 
 
 # MAIN
@@ -206,7 +288,7 @@ def genRand(list):
 if __name__ == "__main__": 
 
     # UPLOAD DATA
-    with open("kdrama_data.txt", "r") as kdrama_data:
+    with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/kdrama_data.txt", "r") as kdrama_data:
 
         # ORGANIZE
         title = []
@@ -217,7 +299,8 @@ if __name__ == "__main__":
         tag_list = []
         cast_list = []
         episodes = []     # int
-        air_time = []      
+        air_time = []    
+        score = [] 
         duration = []   # int - figure out how to change
         restriction = []
         network_list = []
@@ -247,6 +330,8 @@ if __name__ == "__main__":
             cast_list.append(cast)
             episodes.append(int(float(line[8])))
             air_time.append(line[9])
+            raw_score = line[14].split(" ")
+            score.append(raw_score[0])
             duration.append(line[12])
             restriction.append(line[13])
             networks = line[18].split(",")
@@ -256,10 +341,37 @@ if __name__ == "__main__":
             network_list.append(networks)
             popularity.append((line[16]).strip("#"))
 
+    # UPLOAD SAVED LISTS
+    with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/savedLists.txt", "r") as saved:
+        saveList = []
+        for line in saved:
+            line = line.strip()
+            saveList.append(line)
 
+    # RUN ANALYSIS
     
+    # rating scale
+    scale = ratingScale(score)
+    
+    # average episode count per scale
+    avgEpisode = episodeCount(scale, episodes)
+    avg_NA = avgEpisode[0]
+    avg_four = avgEpisode[1]
+    avg_five = avgEpisode[2]
+    avg_six = avgEpisode[3]
+    avg_seven = avgEpisode[4]
+    avg_eight = avgEpisode[5]
+    avg_nine = avgEpisode[6]
+
+
     # WELCOME
-    print("KDRAMA ANALYSIS PROGRAM")
+    print("KDRAMA PROGRAM")
+
+    analysis = input("Print Analysis? [Y or N] ")
+    if analysis == 'Y':
+        with open(f"KDRAMA_ANALYSIS.txt", "w") as analysis:
+            analysis.write(f"KDRAMA ANALYSIS \nAVERAGE EPISODE COUNT: \n Ratings ~ \n   N/A: {avg_NA:.0f} \n   Less than 5.0: {avg_four:.0f} \n   5.0-5.9: {avg_five:.0f} \n   6.0-6.9: {avg_six:.0f} \n   7.0-7.9: {avg_seven:.0f} \n   8.0-8.9: {avg_eight:.0f} \n   More than 9.0: {avg_nine:.0f}")
+
     option = int(input(" 1. Retrieve Information \n 2. Generate List \n 3. Create Watchlist \nWhat would you like to do: "))
 
     if option == 1: 
@@ -280,7 +392,7 @@ if __name__ == "__main__":
             else:
                 print("1. Synopsis \n2. Credits \n3. Genre(s) \n4. Tags \n5. Cast \n6. Episodes \n7. Air Dates \n8. Duration \n9. Restrictions \n10. Popularity \n11. Where to Watch \n12. ALL")
                 info = int(input("What info do you want to know: "))
-                print(titleInfo(idx, info, title, synopsis, screenwriter, director, genre_list, tag_list, cast_list, episodes, air_time, duration, restriction, network_list, popularity))
+                print(titleInfo(idx, info, name, synopsis, screenwriter, director, genre_list, tag_list, cast_list, episodes, air_time, duration, restriction, network_list, popularity))
 
         elif search == "2":
             actor = input("What actor: ")
@@ -293,7 +405,7 @@ if __name__ == "__main__":
 
     elif option == 2: 
         # LOAD IN THESAURUS
-        with open("WordnetSynonyms.csv", "r") as thesaurus:
+        with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/WordnetSynonyms.csv", "r") as thesaurus:
             # ORGANIZE
             word = []
             synonym_list = []
@@ -373,8 +485,32 @@ if __name__ == "__main__":
             print("Not SAVING...")
 
     elif option == 3:
-        print("Let's create your Watch List!")
+        print("Let's create your Watch List! \n 1. Create New List")
+        if len(saveList) > 0:
+                print(" 2. Add to List") 
+        choice = int(input("What would you like to do: "))
+        if choice == 1:
+            create = input("What would you like to name your New List? \n")
+            with open(f"{create}.csv", "a") as newList:
+                numCat = int(input("How many Categories would you like in your list? "))
+                for i in range(numCat):
+                    addCategory(newList, createCategory())
+            with open("/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/savedLists.txt", "a") as save:
+                save.write(f"{create} \n")
 
+        elif choice == 2: 
+            found = False
+            findList = input("Which List would you like to Add to? \n")
+            if findList in saveList:
+                found = True
+            if found == True:
+                with open(f"/Users/emmajohnson/Desktop/Personal Code/kdrama_analysis/{findList}.csv", "a") as add:
+                    entries = int(input("How many entries to Add? "))
+                    for i in range(entries):
+                        addEntry(getCat(findList), add)
+                    
+        else: 
+            print("That was not an Option. Closing Program.")
 
     else:
         print("That was not an Option. Restart Program.")
